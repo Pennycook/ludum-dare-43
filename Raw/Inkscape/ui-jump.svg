@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="64"
+   height="64"
+   viewBox="0 0 64.000001 64.000001"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="ui-jump.svg"
+   inkscape:export-filename="E:\Game Design\ludum-dare-43\Assets\Sprites\ui-box.png"
+   inkscape:export-xdpi="90.000008"
+   inkscape:export-ydpi="90.000008">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="8"
+     inkscape:cx="25.633077"
+     inkscape:cy="21.364714"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-988.36216)">
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4146"
+       width="114.14724"
+       height="82.832512"
+       x="-25.502604"
+       y="975.08551"
+       rx="1.64781"
+       ry="2.3276899" />
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:1.78782892;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3336"
+       width="62.21217"
+       height="62.21217"
+       x="0.89391446"
+       y="989.2561"
+       rx="1.6478103"
+       ry="2.3276944"
+       inkscape:export-filename="E:\Game Design\ludum-dare-43\Assets\Sprites\ui-jump.png"
+       inkscape:export-xdpi="90.000008"
+       inkscape:export-ydpi="90.000008" />
+    <g
+       id="g4168"
+       transform="translate(0.42898297,2.3463853)"
+       inkscape:export-filename="E:\Game Design\ludum-dare-43\Assets\Sprites\ui-jump.png"
+       inkscape:export-xdpi="90.000008"
+       inkscape:export-ydpi="90.000008">
+      <path
+         transform="matrix(1,0,0,0.62008337,-0.37505878,376.66098)"
+         inkscape:transform-center-y="-3.9844222"
+         d="m 31.946076,991.43062 22.259018,38.55378 -44.518038,0 z"
+         inkscape:randomized="0"
+         inkscape:rounded="0"
+         inkscape:flatsided="true"
+         sodipodi:arg2="-0.52359878"
+         sodipodi:arg1="-1.5707963"
+         sodipodi:r2="12.851251"
+         sodipodi:r1="25.702501"
+         sodipodi:cy="1017.1331"
+         sodipodi:cx="31.946075"
+         sodipodi:sides="3"
+         id="path4160"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         sodipodi:type="star" />
+      <rect
+         ry="0"
+         rx="0"
+         y="1013.3419"
+         x="21.911432"
+         height="31.259069"
+         width="19.319168"
+         id="rect4166"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+  </g>
+</svg>
