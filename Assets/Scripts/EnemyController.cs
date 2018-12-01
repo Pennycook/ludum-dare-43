@@ -41,6 +41,8 @@ public class EnemyController : MonoBehaviour
     private AudioSource audio;
     private int health;
 
+    const float MAX_SPEED = 10;
+
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -51,6 +53,18 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
+        // Don't do anything once dead
+        if (health <= 0) return;
+
+        // Simple placeholder AI
+        // Move towards the player at some fixed pace
+        const int PACE = 10;
+        Vector2 direction = GameManager.player.transform.position - gameObject.transform.position;
+        direction.Normalize();
+        direction.y = 0;
+        body.velocity += direction * PACE * Time.deltaTime;
+        body.velocity = new Vector2(Mathf.Clamp(body.velocity.x, -MAX_SPEED, MAX_SPEED), body.velocity.y);
+
         // TODO: Fight back!
     }
 
