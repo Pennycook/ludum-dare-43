@@ -89,7 +89,6 @@ public class GameManager : MonoBehaviour
         while (true)
         {
             satisfaction -= DISSATISFACTION_PER_SECOND;
-            health /= 2;
             yield return new WaitForSeconds(1.0f);
         }
     }

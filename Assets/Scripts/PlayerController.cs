@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D body;
     private AudioSource audio;
+    private SpriteRenderer sprite;
 
     public AudioClip jump_sfx;
     public AudioClip shoot_sfx;
@@ -59,6 +60,7 @@ public class PlayerController : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
         audio = GetComponent<AudioSource>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -111,6 +113,23 @@ public class PlayerController : MonoBehaviour
         // Clamp player speed
         float modified_max_speed = GameManager.movement_speed * MAX_SPEED;
         body.velocity = new Vector2(Mathf.Clamp(body.velocity.x, -MAX_SPEED, MAX_SPEED), body.velocity.y);
+    }
+
+    IEnumerator flash()
+    {
+        sprite.color = new Color32(255, 0, 0, 255);
+        yield return new WaitForSeconds(0.05f);
+        sprite.color = new Color32(0, 0, 0, 255);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            StartCoroutine(flash());
+            audio.PlayOneShot(hurt_sfx);
+            GameManager.health -= 1;
+        }
     }
 
 }
