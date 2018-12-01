@@ -29,39 +29,47 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
+public class BarUpdater : MonoBehaviour
 {
+    Image bar;
 
-    private Rigidbody2D body;
-
-    void Start()
+    public enum MonitorValue
     {
-        body = GetComponent<Rigidbody2D>();
-    }
+        SATISFACTION,
+        HEALTH
+    };
 
-    void Update()
+    public MonitorValue monitor;
+
+	void Start()
     {
-        // Move player horizontally on A/D, arrow keys, joysticks
-        // TODO: Clamp velocity :)
-        float horizontal = Input.GetAxis("Horizontal");
-        body.velocity += new Vector2(horizontal, 0);
-
-        // Jump on W or space (if player still knows how)
-        if (true /*GameManager.checkPlayerCanJump()*/)
+        bar = GetComponent<Image>();
+	}
+	
+	void Update()
+    {
+        int value = 0;
+        switch (monitor)
         {
-            // TODO: Check if player is grounded
-            bool trying_to_jump = (Input.GetAxis("Vertical") > 0) || Input.GetButtonDown("Jump");
-            if (trying_to_jump && body.velocity.y == 0)
-            {
-                body.AddForce(-Physics.gravity * body.mass * 32);
-            }
+            case MonitorValue.HEALTH:
+                value = GameManager.health;
+                break;
+
+            case MonitorValue.SATISFACTION:
+                value = GameManager.satisfaction;
+                break;
         }
-
-        // TODO: Shoot
-    }
-
+        
+        if (value > 0)
+        {
+            float scale = value / 100.0f;
+            bar.transform.localScale = new Vector3(scale, 1, 1);
+        }
+	}
 }

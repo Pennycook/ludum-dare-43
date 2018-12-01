@@ -32,36 +32,67 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
 
-    private Rigidbody2D body;
+    // Singleton instance
+    public static GameManager instance = null;
 
-    void Start()
+    // Magic constants
+    const int KILL_SCORE = 1;
+    const int DISSATISFACTION_PER_SECOND = 1;
+
+    // Game state
+    public static GameObject player;
+
+    // Inputs to win/lose conditions
+    public static int satisfaction;
+    public static int score;
+    public static int health;
+
+    // Sacrificial variables
+    bool can_jump = true;
+    bool can_dodge = true;
+    bool have_gun = true;
+    bool have_sword = true;
+    float movement_speed = 1.0f;
+    int max_health = 128;
+
+    void Awake()
     {
-        body = GetComponent<Rigidbody2D>();
+        // Ensure only one GameManager exists
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
+
+        // Initialize game state
+        player = GameObject.FindGameObjectWithTag("Player");
+        satisfaction = 100;
+        score = 0;
+        health = 100;
+
+        // Monitor dissatisfaction
+        StartCoroutine(growDissatisfied());
     }
 
-    void Update()
+    // Deity's satisfaction decreases over time
+    IEnumerator growDissatisfied()
     {
-        // Move player horizontally on A/D, arrow keys, joysticks
-        // TODO: Clamp velocity :)
-        float horizontal = Input.GetAxis("Horizontal");
-        body.velocity += new Vector2(horizontal, 0);
-
-        // Jump on W or space (if player still knows how)
-        if (true /*GameManager.checkPlayerCanJump()*/)
+        while (true)
         {
-            // TODO: Check if player is grounded
-            bool trying_to_jump = (Input.GetAxis("Vertical") > 0) || Input.GetButtonDown("Jump");
-            if (trying_to_jump && body.velocity.y == 0)
-            {
-                body.AddForce(-Physics.gravity * body.mass * 32);
-            }
+            satisfaction -= DISSATISFACTION_PER_SECOND;
+            health /= 2;
+            score += (int) (Random.value * 100);
+            yield return new WaitForSeconds(1.0f);
         }
-
-        // TODO: Shoot
     }
 
 }

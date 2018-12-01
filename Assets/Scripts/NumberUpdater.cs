@@ -29,39 +29,39 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
+public class NumberUpdater : MonoBehaviour
 {
+    Text label;
 
-    private Rigidbody2D body;
+    public string format;
+
+    public enum MonitorValue
+    {
+        SCORE
+    };
+
+    public MonitorValue monitor;
 
     void Start()
     {
-        body = GetComponent<Rigidbody2D>();
+        label = GetComponent<Text>();
     }
 
     void Update()
     {
-        // Move player horizontally on A/D, arrow keys, joysticks
-        // TODO: Clamp velocity :)
-        float horizontal = Input.GetAxis("Horizontal");
-        body.velocity += new Vector2(horizontal, 0);
-
-        // Jump on W or space (if player still knows how)
-        if (true /*GameManager.checkPlayerCanJump()*/)
+        int value = 0;
+        switch (monitor)
         {
-            // TODO: Check if player is grounded
-            bool trying_to_jump = (Input.GetAxis("Vertical") > 0) || Input.GetButtonDown("Jump");
-            if (trying_to_jump && body.velocity.y == 0)
-            {
-                body.AddForce(-Physics.gravity * body.mass * 32);
-            }
+            case MonitorValue.SCORE:
+                value = GameManager.score;
+                break;
         }
-
-        // TODO: Shoot
+        label.text = string.Format(format, value);
     }
-
 }
