@@ -37,10 +37,17 @@ public class PlayerController : MonoBehaviour
 {
 
     private Rigidbody2D body;
+    private AudioSource audio;
+
+    public AudioClip jump_sfx;
+    public AudioClip shoot_sfx;
+    public AudioClip sword_sfx;
+    public AudioClip hurt_sfx;
 
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        audio = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -58,10 +65,21 @@ public class PlayerController : MonoBehaviour
             if (trying_to_jump && body.velocity.y == 0)
             {
                 body.AddForce(-Physics.gravity * body.mass * 32);
+                audio.PlayOneShot(jump_sfx);
             }
         }
 
+        // TODO: Punch/sword
+        if (Input.GetButtonDown("Hit"))
+        {
+            audio.PlayOneShot(sword_sfx);
+        }
+
         // TODO: Shoot
+        if (Input.GetButtonDown("Shoot"))
+        {
+            audio.PlayOneShot(shoot_sfx);
+        }
     }
 
 }
