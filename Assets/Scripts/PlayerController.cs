@@ -48,6 +48,13 @@ public class PlayerController : MonoBehaviour
 
     const float MAX_SPEED = 15;
 
+    enum FacingDirection
+    {
+        LEFT = -1,
+        RIGHT = 1
+    };
+    FacingDirection facing;
+
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -56,9 +63,17 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // Move player horizontally on A/D, arrow keys, joysticks
-        // TODO: Clamp velocity :)
+        // Move player horizontally on A/D, arrow keys, joysticks       
+        // Only update the direction the player is facing upon input 
         float horizontal = Input.GetAxis("Horizontal");
+        if (horizontal < 0)
+        {
+            facing = FacingDirection.LEFT;
+        }
+        else if (horizontal > 0)
+        {
+            facing = FacingDirection.RIGHT;
+        }
         body.velocity += new Vector2(horizontal, 0);
 
         // Jump on W or space (if player still knows how)
@@ -89,7 +104,7 @@ public class PlayerController : MonoBehaviour
                 GameObject bullet = GameObject.Instantiate<GameObject>(bulletPrefab);
                 bullet.transform.position = gameObject.transform.position;
                 var bulletScript = bullet.GetComponent<Bullet>();
-                bulletScript.Initialize(body.velocity.x);
+                bulletScript.Initialize((float) facing);
             }
         }
 
