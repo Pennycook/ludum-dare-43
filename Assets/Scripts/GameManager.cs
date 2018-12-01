@@ -90,7 +90,6 @@ public class GameManager : MonoBehaviour
         {
             satisfaction -= DISSATISFACTION_PER_SECOND;
             health /= 2;
-            score += (int) (Random.value * 100);
             yield return new WaitForSeconds(1.0f);
         }
     }

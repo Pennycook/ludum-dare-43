@@ -73,6 +73,8 @@ public class EnemyController : MonoBehaviour
                 body.freezeRotation = false;
                 body.AddForceAtPosition(new Vector2(5, 5), new Vector2(1, 1));
                 gameObject.layer = 9; // Limited physics for dead enemies
+                GameManager.score += 1;
+                GameManager.satisfaction += 1;
             }
         }
     }
