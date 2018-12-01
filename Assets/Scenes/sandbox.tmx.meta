@@ -29,16 +29,16 @@ ScriptedImporter:
     6000010: _MapPrfab/sandbox/Tile Layer 1/Collision_Default/Polygon (5)/PolygonCollider2D
     6600000: _MapPrfab/sandbox/Tile Layer 1/Collision_Default/CompositeCollider2D
     11400000: _MapPrfab/sandbox/MonoBehaviour-SuperTiled2Unity.SuperMap
-    11400002: _superAsset
-    11400004: _MapPrfab/sandbox/MonoBehaviour-SuperTiled2Unity.SuperCustomProperties
-    11400006: _MapPrfab/sandbox/Tile Layer 1/MonoBehaviour-SuperTiled2Unity.SuperTileLayer
-    11400008: _MapPrfab/sandbox/Tile Layer 1/MonoBehaviour-SuperTiled2Unity.SuperCustomProperties
-    11400010: _MapPrfab/sandbox/Tile Layer 1/Collision_Default/Polygon/MonoBehaviour-SuperTiled2Unity.SuperColliderComponent
-    11400012: _MapPrfab/sandbox/Tile Layer 1/Collision_Default/Polygon (1)/MonoBehaviour-SuperTiled2Unity.SuperColliderComponent
-    11400014: _MapPrfab/sandbox/Tile Layer 1/Collision_Default/Polygon (2)/MonoBehaviour-SuperTiled2Unity.SuperColliderComponent
-    11400016: _MapPrfab/sandbox/Tile Layer 1/Collision_Default/Polygon (3)/MonoBehaviour-SuperTiled2Unity.SuperColliderComponent
-    11400018: _MapPrfab/sandbox/Tile Layer 1/Collision_Default/Polygon (4)/MonoBehaviour-SuperTiled2Unity.SuperColliderComponent
-    11400020: _MapPrfab/sandbox/Tile Layer 1/Collision_Default/Polygon (5)/MonoBehaviour-SuperTiled2Unity.SuperColliderComponent
+    11400002: _MapPrfab/sandbox/MonoBehaviour-SuperTiled2Unity.SuperCustomProperties
+    11400004: _MapPrfab/sandbox/Tile Layer 1/MonoBehaviour-SuperTiled2Unity.SuperTileLayer
+    11400006: _MapPrfab/sandbox/Tile Layer 1/MonoBehaviour-SuperTiled2Unity.SuperCustomProperties
+    11400008: _MapPrfab/sandbox/Tile Layer 1/Collision_Default/Polygon/MonoBehaviour-SuperTiled2Unity.SuperColliderComponent
+    11400010: _MapPrfab/sandbox/Tile Layer 1/Collision_Default/Polygon (1)/MonoBehaviour-SuperTiled2Unity.SuperColliderComponent
+    11400012: _MapPrfab/sandbox/Tile Layer 1/Collision_Default/Polygon (2)/MonoBehaviour-SuperTiled2Unity.SuperColliderComponent
+    11400014: _MapPrfab/sandbox/Tile Layer 1/Collision_Default/Polygon (3)/MonoBehaviour-SuperTiled2Unity.SuperColliderComponent
+    11400016: _MapPrfab/sandbox/Tile Layer 1/Collision_Default/Polygon (4)/MonoBehaviour-SuperTiled2Unity.SuperColliderComponent
+    11400018: _MapPrfab/sandbox/Tile Layer 1/Collision_Default/Polygon (5)/MonoBehaviour-SuperTiled2Unity.SuperColliderComponent
+    11400020: _superAsset
     100100000: _MapPrfab
     2569400265252428796: _MapPrfab/sandbox/Grid
     3664157343022684176: _MapPrfab/sandbox/Tile Layer 1/TilemapRenderer

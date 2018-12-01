@@ -37,14 +37,39 @@ public class CameraFocus : MonoBehaviour
 {
 
     public GameObject focus;
+    public SuperTiled2Unity.SuperMap map;
+
+    private Camera camera;
+
+    void Start()
+    {
+        camera = GetComponent<Camera>();
+    }
 
     /**
      * Ensure that the camera stays focused on the specified GameObject.
      */
     void Update()
     {
-        // TODO: Clamp to the edge of the level?
-        transform.position = new Vector3(focus.transform.position.x, focus.transform.position.y, transform.position.z);
+        // Initial focus point is the GameObject itself
+        Vector3 focus_point = new Vector3(focus.transform.position.x, focus.transform.position.y, transform.position.z);
+
+        // Compute the screen bounds of the map
+        // Assumes that the orthographic camera is set up correctly...
+        float tiles_x = (camera.pixelWidth / map.m_TileWidth);
+        float xmin = tiles_x / 2;
+        float xmax = map.m_Width - tiles_x / 2;
+
+        float tiles_y = (camera.pixelHeight / map.m_TileHeight);
+        float ymin = -(map.m_Height - tiles_y / 2);
+        float ymax = -tiles_y / 2;
+
+        // Clamp the camera focus position inside the map
+        focus_point.x = Mathf.Clamp(focus_point.x, xmin, xmax);
+        focus_point.y = Mathf.Clamp(focus_point.y, ymin, ymax);
+    
+        // Point the camera at the focus point
+        transform.position = focus_point;
     }
 
 }
