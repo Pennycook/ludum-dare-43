@@ -53,12 +53,12 @@ public class GameManager : MonoBehaviour
     public static int health;
 
     // Sacrificial variables
-    bool can_jump = true;
-    bool can_dodge = true;
-    bool have_gun = true;
-    bool have_sword = true;
-    float movement_speed = 1.0f;
-    int max_health = 128;
+    public static bool can_jump = true;
+    public static bool can_dodge = true;
+    public static bool have_gun = true;
+    public static bool have_sword = true;
+    public static float movement_speed = 1.0f;
+    public static int max_health = 128;
 
     void Awake()
     {

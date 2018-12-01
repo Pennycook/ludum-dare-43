@@ -46,6 +46,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject bulletPrefab;
 
+    const float MAX_SPEED = 15;
+
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -90,6 +92,10 @@ public class PlayerController : MonoBehaviour
                 bulletScript.Initialize(body.velocity.x);
             }
         }
+
+        // Clamp player speed
+        float modified_max_speed = GameManager.movement_speed * MAX_SPEED;
+        body.velocity = new Vector2(Mathf.Clamp(body.velocity.x, -MAX_SPEED, MAX_SPEED), body.velocity.y);
     }
 
 }
