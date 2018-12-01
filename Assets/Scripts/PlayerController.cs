@@ -44,6 +44,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip sword_sfx;
     public AudioClip hurt_sfx;
 
+    public GameObject bulletPrefab;
+
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -75,10 +77,18 @@ public class PlayerController : MonoBehaviour
             audio.PlayOneShot(sword_sfx);
         }
 
-        // TODO: Shoot
-        if (Input.GetButtonDown("Shoot"))
+        // Shoot on mouse button (if player still knows how)
+        if (true /*GameManager.checkPlayerCanShoot()*/)
         {
-            audio.PlayOneShot(shoot_sfx);
+            if (Input.GetButtonDown("Shoot"))
+            {
+                audio.PlayOneShot(shoot_sfx);
+
+                GameObject bullet = GameObject.Instantiate<GameObject>(bulletPrefab);
+                bullet.transform.position = gameObject.transform.position;
+                var bulletScript = bullet.GetComponent<Bullet>();
+                bulletScript.Initialize(body.velocity.x);
+            }
         }
     }
 
