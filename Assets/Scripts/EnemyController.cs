@@ -33,42 +33,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
-    const int SPEED = 10;
-    const int LIFETIME = 1;
 
-    private Vector3 direction;
+    private Rigidbody2D body;
+    private SpriteRenderer sprite;
+    private AudioSource audio;
+    private int health;
 
     void Start()
     {
-        Destroy(gameObject, LIFETIME);
+        body = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
+        audio = GetComponent<AudioSource>();
+        health = 3;
     }
 
-    public void Initialize(float velocity)
+    void Update()
     {
-        direction = new Vector3(velocity >= 0 ? 1 : -1, 0, 0);
-        gameObject.transform.localScale = new Vector3(direction.x, 1, 1);
-    }
-	
-    void FixedUpdate()
-    {
-        gameObject.transform.position += direction * SPEED * Time.deltaTime;
+        // TODO: Fight back!
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    IEnumerator flash()
     {
-        Debug.Log("trigger");
-        Debug.Log(collider.gameObject.tag);
-        // TODO: Handle enemy bullets?
-        if (collider.gameObject.tag != "Player")
+        sprite.color = new Color32(255, 0, 0, 255);
+        yield return new WaitForSeconds(0.1f);
+        sprite.color = new Color32(255, 255, 255, 255);
+    }
+
+    public void hit()
+    {
+        if (health > 0)
         {
-            if (collider.gameObject.tag == "Enemy")
+            audio.PlayOneShot(audio.clip);
+            StartCoroutine(flash());
+            health -= 1;
+            if (health == 0)
             {
-                var enemyScript = collider.gameObject.GetComponent<EnemyController>();
-                enemyScript.hit();
+                body.freezeRotation = false;
+                body.AddForceAtPosition(new Vector2(5, 5), new Vector2(1, 1));
+                gameObject.layer = 9; // Limited physics for dead enemies
             }
-            Destroy(gameObject);
         }
     }
+
 }
