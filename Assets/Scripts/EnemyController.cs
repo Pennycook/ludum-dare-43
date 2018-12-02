@@ -89,6 +89,7 @@ public class EnemyController : MonoBehaviour
                 gameObject.layer = 9; // Limited physics for dead enemies
                 GameManager.score += 1;
                 GameManager.satisfaction += 1;
+                GameManager.numEnemies -= 1;
             }
         }
     }

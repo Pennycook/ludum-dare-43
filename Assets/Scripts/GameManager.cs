@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
 
     // Game state
     public static GameObject player;
+    public static int numEnemies = 0;
 
     // Inputs to win/lose conditions
     public static int satisfaction;
@@ -59,6 +60,9 @@ public class GameManager : MonoBehaviour
     public static bool have_sword = true;
     public static float movement_speed = 1.0f;
     public static int max_health = 128;
+
+    // Prefabs
+    public GameObject enemyPrefab;
 
     void Awake()
     {
@@ -81,6 +85,9 @@ public class GameManager : MonoBehaviour
 
         // Monitor dissatisfaction
         StartCoroutine(growDissatisfied());
+
+        // Spawn enemies
+        StartCoroutine(spawnEnemies());
     }
 
     // Deity's satisfaction decreases over time
@@ -90,6 +97,31 @@ public class GameManager : MonoBehaviour
         {
             satisfaction -= DISSATISFACTION_PER_SECOND;
             yield return new WaitForSeconds(1.0f);
+        }
+    }
+
+    // Enemies "randomly" appear
+    // Rate really increases with dissatisfaction
+    IEnumerator spawnEnemies()
+    {
+        int MAX_ENEMIES = 20;
+        while (true)
+        {
+            yield return new WaitForSeconds(1.0f);
+            if (numEnemies < MAX_ENEMIES)
+            {
+                float r = Random.value * 100;
+                if (r > satisfaction)
+                {
+                    GameObject enemy = GameObject.Instantiate<GameObject>(enemyPrefab, this.transform);
+                    numEnemies += 1;
+
+                    // TODO: Enemies should really spawn from somewhere that makes sense on the level
+                    float x = Random.value * 18;
+                    float y = -12;
+                    enemy.transform.position = new Vector2(x, y);
+                }
+            }
         }
     }
 
