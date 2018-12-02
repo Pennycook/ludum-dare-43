@@ -40,11 +40,16 @@ public class Cutscene : MonoBehaviour
     public Image image;
     public Text description;
 
+    public AudioClip demon;
+    public AudioClip blood;
+
     private DialogueManager dialogueManager;
+    private AudioSource audio;
 
     void Awake()
     {
         dialogueManager = FindObjectOfType<DialogueManager>();
+        audio = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -75,14 +80,19 @@ public class Cutscene : MonoBehaviour
                 "So I sold my soul to a demon in exchange for superpowers.",
                 "That's right -- Kurt Fasthold is THE SACRIFICER."
             };
+        audio.PlayOneShot(demon);
         yield return dialogueManager.OpenDialogue(dialogue);
         image.color = new Color32(139, 0, 0, 255);
         description.color = new Color32(255, 255, 255, 255);
         description.text = "[ Blood!  I hope this is not Chris' blood... ]";
         dialogue.sentences = new string[] {
                 "As long as I keep the demon 'sacrified', I can keep my powers.",
-                "...sacrifices must be made."
             };
+        yield return dialogueManager.OpenDialogue(dialogue);
+        dialogue.sentences = new string[] {
+            "...sacrifices must be made."
+        };
+        audio.PlayOneShot(blood);
         yield return dialogueManager.OpenDialogue(dialogue);
         SceneManager.LoadScene("Level");
     }
