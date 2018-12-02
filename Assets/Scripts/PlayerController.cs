@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
     FacingDirection facing;
 
     private GameObject shield;
+    private GameObject sword;
 
     void Start()
     {
@@ -65,6 +66,21 @@ public class PlayerController : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         shield = transform.Find("Shield").gameObject;
         shield.SetActive(false);
+        sword = transform.Find("Sword").gameObject;
+        sword.SetActive(false);
+    }
+
+    IEnumerator SwordSlash()
+    {       
+        // Crude slashing "animation"
+        sword.SetActive(true);
+        audio.PlayOneShot(sword_sfx);
+        for (int r = 0; r < 50; r += 5)
+        {
+            sword.transform.localEulerAngles = new Vector3(0, 0, -r);
+            yield return new WaitForEndOfFrame();
+        }
+        sword.SetActive(false);
     }
 
     void Update()
@@ -78,10 +94,12 @@ public class PlayerController : MonoBehaviour
         if (horizontal < 0)
         {
             facing = FacingDirection.LEFT;
+            transform.localScale = new Vector3(-1, 1, 1);
         }
         else if (horizontal > 0)
         {
             facing = FacingDirection.RIGHT;
+            transform.localScale = new Vector3(1, 1, 1);
         }
         body.velocity += new Vector2(horizontal, 0);
 
@@ -97,13 +115,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // TODO: Punch/sword
-        if (GameManager.have_sword && Input.GetButtonDown("Hit") && !shield.activeInHierarchy)
+        // Slash with the sword
+        if (GameManager.have_sword && Input.GetButtonDown("Hit") && !shield.activeInHierarchy && !sword.activeInHierarchy)
         {
-            audio.PlayOneShot(sword_sfx);
+            StartCoroutine(SwordSlash());
         }
 
-        // TODO: Activate shield
+        // Activate shield
         if (GameManager.have_shield && Input.GetButton("Shield"))
         {
             shield.SetActive(true);
