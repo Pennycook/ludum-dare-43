@@ -156,14 +156,23 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy" && !shield.activeInHierarchy)
+        if (collision.gameObject.tag == "Enemy")
         {
-            StartCoroutine(flash());
-            audio.PlayOneShot(hurt_sfx);
-            if (GameManager.health > 0)
+            // Only take damage if shield is inactive
+            if (!shield.activeInHierarchy)
             {
-                GameManager.health -= 1;
+                StartCoroutine(flash());
+                audio.PlayOneShot(hurt_sfx);
+                if (GameManager.health > 0)
+                {
+                    GameManager.health -= 1;
+                }
             }
+
+            // Always take a few steps backwards
+            // Enables a follow-up hit
+            Vector2 direction = collision.gameObject.transform.position - transform.position;
+            collision.rigidbody.velocity += 2 * new Vector2(direction.normalized.x, 0);
         }
     }
 

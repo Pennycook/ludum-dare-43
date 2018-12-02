@@ -105,4 +105,15 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        // If two enemies are touching, try to separate them
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Vector2 direction = collision.gameObject.transform.position - transform.position;
+            collision.rigidbody.velocity += new Vector2(direction.normalized.x, 0);
+            body.velocity -= new Vector2(direction.normalized.x, 0);
+        }
+    }
+
 }
