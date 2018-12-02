@@ -55,9 +55,9 @@ public class GameManager : MonoBehaviour
 
     // Sacrificial variables
     public static bool can_jump = true;
-    public static bool can_dodge = true;
     public static bool have_gun = true;
     public static bool have_sword = true;
+    public static bool have_shield = true;
     public static float movement_speed = 1.0f;
     public static int max_health = 128;
 

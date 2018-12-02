@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
         body.velocity += new Vector2(horizontal, 0);
 
         // Jump on W or space (if player still knows how)
-        if (true /*GameManager.checkPlayerCanJump()*/)
+        if (GameManager.can_jump)
         {
             // TODO: Check if player is grounded
             bool trying_to_jump = (Input.GetAxis("Vertical") > 0) || Input.GetButtonDown("Jump");
@@ -91,28 +91,25 @@ public class PlayerController : MonoBehaviour
         }
 
         // TODO: Punch/sword
-        if (Input.GetButtonDown("Hit"))
+        if (GameManager.have_sword && Input.GetButtonDown("Hit"))
         {
             audio.PlayOneShot(sword_sfx);
         }
 
         // Shoot on mouse button (if player still knows how)
-        if (true /*GameManager.checkPlayerCanShoot()*/)
+        if (GameManager.have_gun && Input.GetButtonDown("Shoot"))
         {
-            if (Input.GetButtonDown("Shoot"))
-            {
-                audio.PlayOneShot(shoot_sfx);
+            audio.PlayOneShot(shoot_sfx);
 
-                GameObject bullet = GameObject.Instantiate<GameObject>(bulletPrefab);
-                bullet.transform.position = gameObject.transform.position;
-                var bulletScript = bullet.GetComponent<Bullet>();
-                bulletScript.Initialize((float) facing);
-            }
+            GameObject bullet = GameObject.Instantiate<GameObject>(bulletPrefab);
+            bullet.transform.position = gameObject.transform.position;
+            var bulletScript = bullet.GetComponent<Bullet>();
+            bulletScript.Initialize((float) facing);
         }
 
         // Clamp player speed
         float modified_max_speed = GameManager.movement_speed * MAX_SPEED;
-        body.velocity = new Vector2(Mathf.Clamp(body.velocity.x, -MAX_SPEED, MAX_SPEED), body.velocity.y);
+        body.velocity = new Vector2(Mathf.Clamp(body.velocity.x, -modified_max_speed, modified_max_speed), body.velocity.y);
     }
 
     IEnumerator flash()

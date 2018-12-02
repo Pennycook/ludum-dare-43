@@ -33,13 +33,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
-public class CanvasHighlighter : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class BoxUpdater : MonoBehaviour
 {
-    Image image;
-    AudioSource audio;
-    CanvasGroup group;
 
     public enum Sacrifice
     {
@@ -52,81 +48,45 @@ public class CanvasHighlighter : MonoBehaviour, IPointerClickHandler, IPointerEn
     };
     public Sacrifice sacrifice;
 
-    void Start()
+    private Image image;
+
+    public void Start()
     {
         image = GetComponent<Image>();
-        audio = GetComponentInParent<AudioSource>();
-        group = GetComponent<CanvasGroup>();
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void Update()
     {
-        if (!group.interactable) return;
-
-        audio.Play();
-
-        // Update the variable corresponding to this selection.
-        bool disable = true;
+        bool disable = false;
         switch (sacrifice)
         {
             case Sacrifice.JUMP:
-                GameManager.can_jump = false;
+                disable = !GameManager.can_jump;
                 break;
 
             case Sacrifice.SHOOT:
-                GameManager.have_gun = false;
+                disable = !GameManager.have_gun;
                 break;
 
             case Sacrifice.SWORD:
-                GameManager.have_sword = false;
+                disable = !GameManager.have_sword;
                 break;
 
             case Sacrifice.SHIELD:
-                GameManager.have_shield = false;
+                disable = !GameManager.have_shield;
                 break;
 
             case Sacrifice.SPEED:
-                GameManager.movement_speed *= 0.5f;
-                if (GameManager.movement_speed <= 0.1f)
-                {
-                    GameManager.movement_speed = 0;
-                }
-                else
-                {
-                    disable = false;
-                }
+                disable = (GameManager.movement_speed == 0);
                 break;
 
             case Sacrifice.HEALTH:
-                GameManager.max_health /= 2;
-                if (GameManager.max_health == 0)
-                {
-                    GameManager.max_health = 1;
-                }
-                else
-                {
-                    disable = false;
-                }
+                disable = (GameManager.max_health == 1);
                 break;
         }
-
         if (disable)
         {
-            group.interactable = false;
-            image.color = new Color32(128, 128, 128, 255);
-            group.alpha = 0.5f;
+            image.color = new Color32(0, 0, 0, 0);
         }
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if (!group.interactable) return;
-        image.color = new Color32(255, 255, 0, 255);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        if (!group.interactable) return;
-        image.color = new Color32(255, 255, 255, 255);
     }
 }
