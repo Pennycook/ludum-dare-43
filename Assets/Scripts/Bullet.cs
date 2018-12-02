@@ -58,7 +58,7 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        // TODO: Handle enemy bullets?
+        // TODO: Handle enemy bullets?        
         if (collider.gameObject.tag != "Player" && collider.gameObject.layer != 9)
         {
             if (collider.gameObject.tag == "Enemy")
