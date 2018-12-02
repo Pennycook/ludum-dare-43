@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
     // Magic constants
     const int KILL_SCORE = 1;
     const int DISSATISFACTION_PER_SECOND = 1;
+    public const int MAX_SATISFACTION = 30;
 
     // Game state
     public static GameObject player;
@@ -59,7 +60,11 @@ public class GameManager : MonoBehaviour
     public static bool have_sword = true;
     public static bool have_shield = true;
     public static float movement_speed = 1.0f;
-    public static int max_health = 128;
+    public static int max_health = 16;
+
+    // UI 
+    public CanvasGroup menu;
+    bool menu_open = false;
 
     // Prefabs
     public GameObject enemyPrefab;
@@ -79,9 +84,14 @@ public class GameManager : MonoBehaviour
 
         // Initialize game state
         player = GameObject.FindGameObjectWithTag("Player");
-        satisfaction = 100;
+        satisfaction = MAX_SATISFACTION;
         score = 0;
-        health = 100;
+        health = max_health;
+
+        // Ensure that the menu is hidden
+        menu.alpha = 0.0f;
+        menu.interactable = false;
+        menu_open = false;
 
         // Monitor dissatisfaction
         StartCoroutine(growDissatisfied());
@@ -90,12 +100,40 @@ public class GameManager : MonoBehaviour
         StartCoroutine(spawnEnemies());
     }
 
+    public static void ShowMenu()
+    {
+        instance.menu.alpha = 1.0f;
+        instance.menu.interactable = true;
+        instance.menu_open = true;
+    }
+
+    public static void HideMenu()
+    {
+        instance.menu.alpha = 0.0f;
+        instance.menu.interactable = false;
+        instance.menu_open = false;
+
+        health = max_health;
+        satisfaction = MAX_SATISFACTION;
+    }
+
+    public void Update()
+    {
+        if (satisfaction == 0 || health == 0)
+        {
+            ShowMenu();
+        }
+    }
+
     // Deity's satisfaction decreases over time
     IEnumerator growDissatisfied()
     {
         while (true)
         {
-            satisfaction -= DISSATISFACTION_PER_SECOND;
+            if (satisfaction > 0)
+            {
+                satisfaction -= DISSATISFACTION_PER_SECOND;
+            }
             yield return new WaitForSeconds(1.0f);
         }
     }
@@ -110,7 +148,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(1.0f);
             if (numEnemies < MAX_ENEMIES)
             {
-                float r = Random.value * 100;
+                float r = Random.value * MAX_SATISFACTION;
                 if (r > satisfaction)
                 {
                     GameObject enemy = GameObject.Instantiate<GameObject>(enemyPrefab, this.transform);

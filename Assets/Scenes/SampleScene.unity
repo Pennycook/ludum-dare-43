@@ -1021,7 +1021,7 @@ CanvasRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 299012790}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!225 &299012797
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2986,6 +2986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62f66d094510afc459c5e4adff613f00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menu: {fileID: 996115274}
   enemyPrefab: {fileID: 1968763370544770, guid: e71832d8efdee7543be4e4beb6bcdaec,
     type: 2}
 --- !u!82 &953761245
@@ -3238,6 +3239,7 @@ GameObject:
   - component: {fileID: 996115273}
   - component: {fileID: 996115272}
   - component: {fileID: 996115274}
+  - component: {fileID: 996115275}
   m_Layer: 5
   m_Name: Level Down
   m_TagString: Untagged
@@ -3312,9 +3314,20 @@ CanvasGroup:
   m_GameObject: {fileID: 996115270}
   m_Enabled: 1
   m_Alpha: 1
-  m_Interactable: 1
+  m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &996115275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 996115270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd344b64d47e80f4485606f852c8a1f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1012606780
 GameObject:
   m_ObjectHideFlags: 0

@@ -52,6 +52,8 @@ public class CanvasHighlighter : MonoBehaviour, IPointerClickHandler, IPointerEn
     };
     public Sacrifice sacrifice;
 
+    private bool disabled = false;
+
     void Start()
     {
         image = GetComponent<Image>();
@@ -61,7 +63,7 @@ public class CanvasHighlighter : MonoBehaviour, IPointerClickHandler, IPointerEn
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (!group.interactable) return;
+        if (!group.interactable || disabled) return;
 
         audio.Play();
 
@@ -115,18 +117,20 @@ public class CanvasHighlighter : MonoBehaviour, IPointerClickHandler, IPointerEn
             group.interactable = false;
             image.color = new Color32(128, 128, 128, 255);
             group.alpha = 0.5f;
+            disabled = true;
         }
-    }
+        GameManager.HideMenu();
+    }   
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!group.interactable) return;
+        if (!group.interactable || disabled) return;
         image.color = new Color32(255, 255, 0, 255);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (!group.interactable) return;
+        if (!group.interactable || disabled) return;
         image.color = new Color32(255, 255, 255, 255);
     }
 }

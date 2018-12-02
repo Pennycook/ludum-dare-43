@@ -125,7 +125,10 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(flash());
             audio.PlayOneShot(hurt_sfx);
-            GameManager.health -= 1;
+            if (GameManager.health > 0)
+            {
+                GameManager.health -= 1;
+            }
         }
     }
 

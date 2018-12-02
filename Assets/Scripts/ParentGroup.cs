@@ -29,47 +29,39 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BarUpdater : MonoBehaviour
+// TODO: Find a nicer way to implement this behavior, because this feels like a hack.
+public class ParentGroup : MonoBehaviour
 {
-    Image bar;
+    private CanvasGroup self;
+    private CanvasGroup[] children;
+    private bool last_interactable;
 
-    public enum MonitorValue
+    public void Start()
     {
-        SATISFACTION,
-        HEALTH
-    };
-
-    public MonitorValue monitor;
-
-	void Start()
-    {
-        bar = GetComponent<Image>();
-	}
-	
-	void Update()
-    {
-        int value = 0;
-        int max_value = 0;
-        switch (monitor)
+        self = GetComponent<CanvasGroup>();
+        children = GetComponentsInChildren<CanvasGroup>();
+        last_interactable = self.interactable;
+        foreach (CanvasGroup child in children)
         {
-            case MonitorValue.HEALTH:
-                value = GameManager.health;
-                max_value = GameManager.max_health;
-                break;
-
-            case MonitorValue.SATISFACTION:
-                value = GameManager.satisfaction;
-                max_value = GameManager.MAX_SATISFACTION;
-                break;
+            child.interactable = self.interactable;
         }
-        
-        float scale = value / (float) max_value;
-        bar.transform.localScale = new Vector3(scale, 1, 1);
-	}
+    }
+
+    public void Update()
+    {
+        if (self.interactable != last_interactable)
+        {
+            Debug.Log(self.interactable);
+            foreach (CanvasGroup child in children)
+            {
+                child.interactable = self.interactable;
+            }
+            last_interactable = self.interactable;
+        }
+    }
 }
