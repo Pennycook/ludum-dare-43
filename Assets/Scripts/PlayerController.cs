@@ -65,6 +65,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // Don't accept input when menu is showing
+        if (GameManager.Paused()) return;
+
         // Move player horizontally on A/D, arrow keys, joysticks       
         // Only update the direction the player is facing upon input 
         float horizontal = Input.GetAxis("Horizontal");

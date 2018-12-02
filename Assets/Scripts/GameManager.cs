@@ -105,6 +105,8 @@ public class GameManager : MonoBehaviour
         instance.menu.alpha = 1.0f;
         instance.menu.interactable = true;
         instance.menu_open = true;
+
+        Time.timeScale = 0.0f;
     }
 
     public static void HideMenu()
@@ -115,6 +117,13 @@ public class GameManager : MonoBehaviour
 
         health = max_health;
         satisfaction = MAX_SATISFACTION;
+
+        Time.timeScale = 1.0f;
+    }
+
+    public static bool Paused()
+    {
+        return instance.menu_open;
     }
 
     public void Update()
