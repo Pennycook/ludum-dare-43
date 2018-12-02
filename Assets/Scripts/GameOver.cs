@@ -32,10 +32,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class TitleScreen : MonoBehaviour
+public class GameOver : MonoBehaviour
 {
+    public Text score;
+
+    void Awake()
+    {
+        score.text = string.Format("SCORE: {0}", GameManager.score);
+        Time.timeScale = 1.0f;
+    }
+
     void Update()
     {
         if (Input.GetButtonDown("Shoot") ||
@@ -44,7 +53,7 @@ public class TitleScreen : MonoBehaviour
             Input.GetMouseButtonDown(1) ||
             Input.GetKeyDown(KeyCode.Return))
         {
-            SceneManager.LoadScene("Opening");
+            SceneManager.LoadScene("Level");
         }
     }
 }

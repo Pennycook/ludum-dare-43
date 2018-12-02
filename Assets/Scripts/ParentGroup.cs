@@ -56,7 +56,6 @@ public class ParentGroup : MonoBehaviour
     {
         if (self.interactable != last_interactable)
         {
-            Debug.Log(self.interactable);
             foreach (CanvasGroup child in children)
             {
                 child.interactable = self.interactable;

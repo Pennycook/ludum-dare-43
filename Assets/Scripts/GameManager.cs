@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
     // Game state
     public static GameObject player;
     public static int numEnemies = 0;
+    public static bool game_over = false;
 
     // Inputs to win/lose conditions
     public static int satisfaction;
@@ -63,8 +64,8 @@ public class GameManager : MonoBehaviour
     public static int max_health = 16;
 
     // UI 
-    public CanvasGroup menu;
-    bool menu_open = false;
+    public static CanvasGroup menu;
+    public static bool menu_open = false;
 
     // Prefabs
     public GameObject enemyPrefab;
@@ -84,9 +85,17 @@ public class GameManager : MonoBehaviour
 
         // Initialize game state
         player = GameObject.FindGameObjectWithTag("Player");
+        menu = GameObject.Find("Level Down").GetComponent<CanvasGroup>();
+        can_jump = true;
+        have_gun = true;
+        have_sword = true;
+        have_shield = true;
+        movement_speed = 1.0f;
+        max_health = 16;
         satisfaction = MAX_SATISFACTION;
         score = 0;
         health = max_health;
+        game_over = false;
 
         // Ensure that the menu is hidden
         menu.alpha = 0.0f;
@@ -98,22 +107,32 @@ public class GameManager : MonoBehaviour
 
         // Spawn enemies
         StartCoroutine(spawnEnemies());
-    }
+    }    
 
     public static void ShowMenu()
     {
-        instance.menu.alpha = 1.0f;
-        instance.menu.interactable = true;
-        instance.menu_open = true;
+        // Trigger game over if out of powers to sacrifice
+        if (!game_over && !can_jump && !have_gun && !have_sword && !have_shield && movement_speed == 0 && max_health == 1)
+        {
+            game_over = true;
+            instance.StopCoroutine(instance.growDissatisfied());
+            instance.StopCoroutine(instance.spawnEnemies());
+            SceneManager.LoadScene("Game Over");
+            return;
+        }
+
+        menu.alpha = 1.0f;
+        menu.interactable = true;
+        menu_open = true;
 
         Time.timeScale = 0.0f;
     }
 
     public static void HideMenu()
     {
-        instance.menu.alpha = 0.0f;
-        instance.menu.interactable = false;
-        instance.menu_open = false;
+        menu.alpha = 0.0f;
+        menu.interactable = false;
+        menu_open = false;
 
         health = max_health;
         satisfaction = MAX_SATISFACTION;
@@ -123,12 +142,12 @@ public class GameManager : MonoBehaviour
 
     public static bool Paused()
     {
-        return instance.menu_open;
+        return menu_open;
     }
 
     public void Update()
     {
-        if (satisfaction == 0 || health == 0)
+        if (!game_over && (satisfaction == 0 || health == 0))
         {
             ShowMenu();
         }
@@ -139,7 +158,7 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
-            if (satisfaction > 0)
+            if (!GameManager.game_over && satisfaction > 0)
             {
                 satisfaction -= DISSATISFACTION_PER_SECOND;
             }
@@ -155,12 +174,12 @@ public class GameManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1.0f);
-            if (numEnemies < MAX_ENEMIES)
+            if (!GameManager.game_over && numEnemies < MAX_ENEMIES)
             {
                 float r = Random.value * MAX_SATISFACTION;
                 if (r > satisfaction)
                 {
-                    GameObject enemy = GameObject.Instantiate<GameObject>(enemyPrefab, this.transform);
+                    GameObject enemy = GameObject.Instantiate<GameObject>(enemyPrefab);
                     numEnemies += 1;
 
                     // TODO: Enemies should really spawn from somewhere that makes sense on the level
