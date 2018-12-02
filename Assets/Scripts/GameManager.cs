@@ -43,7 +43,8 @@ public class GameManager : MonoBehaviour
     // Magic constants
     const int KILL_SCORE = 1;
     const int DISSATISFACTION_PER_SECOND = 1;
-    public const int MAX_SATISFACTION = 30;
+    public const int INITIAL_MAX_HEALTH = 8;
+    public const int MAX_SATISFACTION = 20;
 
     // Game state
     public static GameObject player;
@@ -61,7 +62,7 @@ public class GameManager : MonoBehaviour
     public static bool have_sword = true;
     public static bool have_shield = true;
     public static float movement_speed = 1.0f;
-    public static int max_health = 16;
+    public static int max_health = INITIAL_MAX_HEALTH;
 
     // UI 
     public static CanvasGroup menu;
@@ -91,7 +92,7 @@ public class GameManager : MonoBehaviour
         have_sword = true;
         have_shield = true;
         movement_speed = 1.0f;
-        max_health = 16;
+        max_health = INITIAL_MAX_HEALTH;
         satisfaction = MAX_SATISFACTION;
         score = 0;
         health = max_health;
