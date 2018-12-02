@@ -28,18 +28,23 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="4.6845823"
-     inkscape:cx="-80.769949"
-     inkscape:cy="28.424611"
+     inkscape:zoom="13.25"
+     inkscape:cx="1.1695354"
+     inkscape:cy="24.557773"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
-     showgrid="false"
+     showgrid="true"
      units="px"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="1"
+     showguides="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4190" />
+  </sodipodi:namedview>
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -48,7 +53,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -58,16 +63,125 @@
      id="layer1"
      transform="translate(0,-988.36216)">
     <rect
-       style="opacity:1;fill:#ffccaa;fill-opacity:1;stroke:#000000;stroke-width:1.18686628;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="opacity:1;fill:#ffccaa;fill-opacity:1;stroke:#000000;stroke-width:1.00294733;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect4584"
-       width="30.813133"
-       height="46.813133"
-       x="16.593433"
-       y="1004.9556"
+       width="30.997053"
+       height="46.810089"
+       x="16.501472"
+       y="1004.9571"
        rx="0"
        ry="0"
        inkscape:export-filename="E:\Game Design\ludum-dare-43\Assets\Sprites\enemy.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
+    <rect
+       style="opacity:1;fill:#bbbbbb;fill-opacity:1;stroke:#000000;stroke-width:0.9993642;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4584-3"
+       width="31.000635"
+       height="30.596945"
+       x="16.499683"
+       y="1021.2839"
+       rx="0"
+       ry="0"
+       inkscape:export-filename="E:\Game Design\ludum-dare-43\Assets\Sprites\enemy.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="E:\Game Design\ludum-dare-43\Assets\Sprites\enemy.png"
+       ry="0"
+       rx="0"
+       y="1034.7174"
+       x="16.497744"
+       height="17.288074"
+       width="31.004513"
+       id="rect4173"
+       style="opacity:1;fill:#0547ff;fill-opacity:1;stroke:#000000;stroke-width:0.99548656;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="E:\Game Design\ludum-dare-43\Assets\Sprites\enemy.png"
+       ry="0"
+       rx="0"
+       y="1049.0312"
+       x="16.494694"
+       height="3.1793857"
+       width="31.010611"
+       id="rect3369"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.98939025;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       style="opacity:1;fill:#783000;fill-opacity:1;stroke:#000000;stroke-width:0.99304783;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 16.496094 16.669922 L 16.496094 19.677734 L 44.238281 19.677734 L 44.238281 32.691406 L 47.5 32.691406 L 47.5 19.677734 L 47.503906 19.677734 L 47.503906 16.669922 L 16.496094 16.669922 z "
+       transform="translate(0,988.36216)"
+       id="rect4584-39" />
+    <rect
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="E:\Game Design\ludum-dare-43\Assets\Sprites\enemy.png"
+       ry="0"
+       rx="0"
+       y="1039.1533"
+       x="29.518606"
+       height="13.397296"
+       width="0.6986388"
+       id="rect4173-2"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.13154809;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       style="opacity:1;fill:#272727;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4584-3-7"
+       width="7.2782311"
+       height="15.478313"
+       x="16.500002"
+       y="1021.2842"
+       rx="0"
+       ry="0"
+       inkscape:export-filename="E:\Game Design\ludum-dare-43\Assets\Sprites\enemy.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="opacity:1;fill:#272727;fill-opacity:1;stroke:#000000;stroke-width:1.28295362;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4584-3-7-7"
+       width="12.202825"
+       height="15.19536"
+       x="35.155701"
+       y="1021.4257"
+       rx="0"
+       ry="0"
+       inkscape:export-filename="E:\Game Design\ludum-dare-43\Assets\Sprites\enemy.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="opacity:1;fill:#272727;fill-opacity:1;stroke:#000000;stroke-width:1.06371975;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4310"
+       sodipodi:type="arc"
+       sodipodi:cx="24.043169"
+       sodipodi:cy="1012.9059"
+       sodipodi:rx="3.4681401"
+       sodipodi:ry="2.9362993"
+       sodipodi:start="0"
+       sodipodi:end="3.1415927"
+       d="m 27.511309,1012.9059 a 3.4681401,2.9362993 0 0 1 -1.73407,2.5429 3.4681401,2.9362993 0 0 1 -3.46814,0 3.4681401,2.9362993 0 0 1 -1.73407,-2.5429 l 3.46814,0 z" />
+    <path
+       style="opacity:1;fill:#272727;fill-opacity:1;stroke:#000000;stroke-width:1.06371975;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4310-3"
+       sodipodi:type="arc"
+       sodipodi:cx="32.763615"
+       sodipodi:cy="1012.892"
+       sodipodi:rx="3.4681401"
+       sodipodi:ry="2.9362993"
+       sodipodi:start="0"
+       sodipodi:end="3.1415927"
+       d="m 36.231755,1012.892 a 3.4681401,2.9362993 0 0 1 -1.73407,2.5429 3.4681401,2.9362993 0 0 1 -3.468141,0 3.4681401,2.9362993 0 0 1 -1.734069,-2.5429 l 3.46814,0 z" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 27.894513,1012.9492 c 1,0 1,0 1,0"
+       id="path4327"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 36.590769,1012.9492 c 2.414214,0 2.414214,0 2.414214,0"
+       id="path4327-9"
+       inkscape:connector-curvature="0" />
   </g>
 </svg>

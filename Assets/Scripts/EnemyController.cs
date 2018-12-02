@@ -66,6 +66,16 @@ public class EnemyController : MonoBehaviour
         body.velocity = new Vector2(Mathf.Clamp(body.velocity.x, -MAX_SPEED, MAX_SPEED), body.velocity.y);
 
         // TODO: Fight back!
+
+        // Face in the correct direction
+        if (body.velocity.x >= 0)
+        {
+            sprite.flipX = true;
+        }
+        else
+        {
+            sprite.flipX = false;
+        }
     }
 
     IEnumerator flash()
