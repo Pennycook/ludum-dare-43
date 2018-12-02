@@ -56,11 +56,15 @@ public class PlayerController : MonoBehaviour
     };
     FacingDirection facing;
 
+    private GameObject shield;
+
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
         audio = GetComponent<AudioSource>();
         sprite = GetComponent<SpriteRenderer>();
+        shield = transform.Find("Shield").gameObject;
+        shield.SetActive(false);
     }
 
     void Update()
@@ -94,13 +98,23 @@ public class PlayerController : MonoBehaviour
         }
 
         // TODO: Punch/sword
-        if (GameManager.have_sword && Input.GetButtonDown("Hit"))
+        if (GameManager.have_sword && Input.GetButtonDown("Hit") && !shield.activeInHierarchy)
         {
             audio.PlayOneShot(sword_sfx);
         }
 
+        // TODO: Activate shield
+        if (GameManager.have_shield && Input.GetButton("Shield"))
+        {
+            shield.SetActive(true);
+        }
+        else
+        {
+            shield.SetActive(false);
+        }
+
         // Shoot on mouse button (if player still knows how)
-        if (GameManager.have_gun && Input.GetButtonDown("Shoot"))
+        if (GameManager.have_gun && Input.GetButtonDown("Shoot") && !shield.activeInHierarchy)
         {
             audio.PlayOneShot(shoot_sfx);
 
@@ -124,7 +138,7 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" && !shield.activeInHierarchy)
         {
             StartCoroutine(flash());
             audio.PlayOneShot(hurt_sfx);
