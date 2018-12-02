@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour
     {
         sprite.color = new Color32(255, 0, 0, 255);
         yield return new WaitForSeconds(0.05f);
-        sprite.color = new Color32(0, 0, 0, 255);
+        sprite.color = new Color32(255, 255, 255, 255);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
