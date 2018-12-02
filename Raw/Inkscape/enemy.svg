@@ -15,7 +15,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="enemy.svg">
+   sodipodi:docname="enemy.svg"
+   inkscape:export-filename="E:\Game Design\ludum-dare-43\Assets\Sprites\enemy.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -25,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="4.0603397"
-     inkscape:cx="-91.120523"
-     inkscape:cy="46.482371"
+     inkscape:zoom="4.6845823"
+     inkscape:cx="-80.769949"
+     inkscape:cy="28.424611"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -55,12 +58,12 @@
      id="layer1"
      transform="translate(0,-988.36216)">
     <rect
-       style="opacity:1;fill:#ffccaa;fill-opacity:1;stroke:#000000;stroke-width:1.939394;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="opacity:1;fill:#ffccaa;fill-opacity:1;stroke:#000000;stroke-width:1.18686628;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect4584"
-       width="62.060608"
-       height="62.060608"
-       x="0.96969604"
-       y="989.33185"
+       width="30.813133"
+       height="46.813133"
+       x="16.593433"
+       y="1004.9556"
        rx="0"
        ry="0"
        inkscape:export-filename="E:\Game Design\ludum-dare-43\Assets\Sprites\enemy.png"
