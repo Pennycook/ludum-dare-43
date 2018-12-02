@@ -29,65 +29,65 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+/**
+ * Based on Brackey's Dialogue-System tutorial:
+ * https://github.com/Brackeys/Dialogue-System
+ */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BoxUpdater : MonoBehaviour
+public class DialogueManager : MonoBehaviour
 {
 
-    public enum Sacrifice
-    {
-        JUMP,
-        SHOOT,
-        SWORD,
-        SHIELD,
-        SPEED,
-        HEALTH
-    };
-    public Sacrifice sacrifice;
+    public Image box;
+    public Text nameUI;
+    public Text dialogueUI;
 
-    private Image image;
+    private Queue<string> sentenceQueue;
 
-    public void Start()
+    void Awake()
     {
-        image = GetComponent<Image>();
+        sentenceQueue = new Queue<string>();
     }
 
-    public void Update()
+    public Coroutine OpenDialogue(Dialogue dialogue)
     {
-        bool disable = false;
-        switch (sacrifice)
+        nameUI.color = dialogue.color;
+        nameUI.text = dialogue.name;
+
+        sentenceQueue.Clear();
+        foreach (string sentence in dialogue.sentences)
         {
-            case Sacrifice.JUMP:
-                disable = !GameManager.can_jump;
-                break;
-
-
-            case Sacrifice.SHOOT:
-                disable = !GameManager.have_gun;
-                break;
-
-            case Sacrifice.SWORD:
-                disable = !GameManager.have_sword;
-                break;
-
-            case Sacrifice.SHIELD:
-                disable = !GameManager.have_shield;
-                break;
-
-            case Sacrifice.SPEED:
-                disable = (GameManager.movement_speed == 0);
-                break;
-
-            case Sacrifice.HEALTH:
-                disable = (GameManager.max_health == 1);
-                break;
+            sentenceQueue.Enqueue(string.Format("\"{0}\"", sentence));
         }
-        if (disable)
-        {
-            image.color = new Color32(0, 0, 0, 0);
-        }
+
+        box.GetComponent<CanvasGroup>().alpha = 1;
+        StopAllCoroutines();
+        return StartCoroutine(TypeDialogue());
     }
+
+    IEnumerator TypeDialogue()
+    {
+        while (sentenceQueue.Count > 0)
+        {
+            string sentence = sentenceQueue.Dequeue();
+
+            dialogueUI.text = "";
+            foreach (char letter in sentence.ToCharArray())
+            {                
+                dialogueUI.text += letter;
+                yield return null;
+            }
+            yield return new WaitForSeconds(3.0f);
+        }
+        CloseDialogue();
+    }
+    
+    public void CloseDialogue()
+    {
+        box.GetComponent<CanvasGroup>().alpha = 0;
+    }
+
 }

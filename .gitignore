@@ -4,6 +4,8 @@
 [Bb]uild/
 [Bb]uilds/
 Assets/AssetStoreTools*
+Assets/SuperTiled2Unity*
+Assets/Fonts*
 
 # Visual Studio cache directory
 .vs/

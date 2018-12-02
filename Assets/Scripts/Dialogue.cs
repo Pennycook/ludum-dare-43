@@ -29,65 +29,20 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+/**
+ * Based on Brackey's Dialogue-System tutorial:
+ * https://github.com/Brackeys/Dialogue-System
+ */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class BoxUpdater : MonoBehaviour
+[System.Serializable]
+public class Dialogue
 {
 
-    public enum Sacrifice
-    {
-        JUMP,
-        SHOOT,
-        SWORD,
-        SHIELD,
-        SPEED,
-        HEALTH
-    };
-    public Sacrifice sacrifice;
+    public Color color;
+    public string name;
+    public string[] sentences;
 
-    private Image image;
-
-    public void Start()
-    {
-        image = GetComponent<Image>();
-    }
-
-    public void Update()
-    {
-        bool disable = false;
-        switch (sacrifice)
-        {
-            case Sacrifice.JUMP:
-                disable = !GameManager.can_jump;
-                break;
-
-
-            case Sacrifice.SHOOT:
-                disable = !GameManager.have_gun;
-                break;
-
-            case Sacrifice.SWORD:
-                disable = !GameManager.have_sword;
-                break;
-
-            case Sacrifice.SHIELD:
-                disable = !GameManager.have_shield;
-                break;
-
-            case Sacrifice.SPEED:
-                disable = (GameManager.movement_speed == 0);
-                break;
-
-            case Sacrifice.HEALTH:
-                disable = (GameManager.max_health == 1);
-                break;
-        }
-        if (disable)
-        {
-            image.color = new Color32(0, 0, 0, 0);
-        }
-    }
 }
