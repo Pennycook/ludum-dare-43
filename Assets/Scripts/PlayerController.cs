@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
 
     private GameObject shield;
     private GameObject sword;
+    private Feet feet;
 
     void Start()
     {
@@ -68,6 +69,7 @@ public class PlayerController : MonoBehaviour
         shield.SetActive(false);
         sword = transform.Find("Sword").gameObject;
         sword.SetActive(false);
+        feet = transform.Find("Feet").gameObject.GetComponent<Feet>();
     }
 
     IEnumerator SwordSlash()
@@ -108,10 +110,11 @@ public class PlayerController : MonoBehaviour
         {
             // TODO: Check if player is grounded
             bool trying_to_jump = (Input.GetAxis("Vertical") > 0) || Input.GetButtonDown("Jump");
-            if (trying_to_jump && body.velocity.y == 0)
+            if (trying_to_jump && feet.grounded)
             {
                 body.AddForce(-Physics.gravity * body.mass * 32);
                 audio.PlayOneShot(jump_sfx);
+                feet.grounded = false;
             }
         }
 
