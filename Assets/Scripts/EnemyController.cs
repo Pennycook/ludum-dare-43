@@ -90,6 +90,7 @@ public class EnemyController : MonoBehaviour
                 GameManager.score += 1;
                 GameManager.satisfaction += 1;
                 GameManager.numEnemies -= 1;
+                Destroy(gameObject, 5);
             }
         }
     }
