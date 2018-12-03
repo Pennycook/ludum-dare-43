@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     // Singleton instance
     public static GameManager instance = null;
+    private AudioSource audio;
 
     // Magic constants
     const int KILL_SCORE = 1;
@@ -70,6 +71,7 @@ public class GameManager : MonoBehaviour
 
     // Prefabs
     public GameObject enemyPrefab;
+    public AudioClip level_down;
 
     void Awake()
     {
@@ -87,6 +89,7 @@ public class GameManager : MonoBehaviour
         // Initialize game state
         player = GameObject.FindGameObjectWithTag("Player");
         menu = GameObject.Find("Level Down").GetComponent<CanvasGroup>();
+        audio = GetComponent<AudioSource>();
         can_jump = true;
         have_gun = true;
         have_sword = true;
@@ -110,6 +113,12 @@ public class GameManager : MonoBehaviour
         StartCoroutine(spawnEnemies());
     }    
 
+    IEnumerator DelayMenu()
+    {
+        yield return new WaitForSecondsRealtime(1.0f);
+        menu.interactable = true;
+    }
+
     public static void ShowMenu()
     {
         // Trigger game over if out of powers to sacrifice
@@ -122,11 +131,15 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        menu.alpha = 1.0f;
-        menu.interactable = true;
-        menu_open = true;
+        if (menu_open == false)
+        {
+            menu.alpha = 1.0f;
+            menu_open = true;
 
-        Time.timeScale = 0.0f;
+            instance.audio.PlayOneShot(instance.level_down);
+            Time.timeScale = 0.0f;
+            instance.StartCoroutine(instance.DelayMenu());
+        }
     }
 
     public static void HideMenu()
