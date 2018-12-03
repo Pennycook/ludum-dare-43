@@ -42,7 +42,7 @@ public class Sword : MonoBehaviour
             if (collider.gameObject.tag == "Enemy")
             {
                 var enemyScript = collider.gameObject.GetComponent<EnemyController>();
-                enemyScript.hit();
+                enemyScript.hit(2); // do more damage than a bullet
             }            
         }
     }

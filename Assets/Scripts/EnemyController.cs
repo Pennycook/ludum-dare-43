@@ -85,14 +85,14 @@ public class EnemyController : MonoBehaviour
         sprite.color = new Color32(255, 255, 255, 255);
     }
 
-    public void hit()
+    public void hit(int damage = 1)
     {
         if (health > 0)
         {
             audio.PlayOneShot(audio.clip);
             StartCoroutine(flash());
-            health -= 1;
-            if (health == 0)
+            health -= damage;
+            if (health <= 0)
             {
                 body.freezeRotation = false;
                 body.AddForceAtPosition(new Vector2(5, 5), new Vector2(1, 1));
